@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "id": "3049517c-4fc6-49fd-a1d3-206f0035b45c",
+        "name": "Giraffe",
+        "continent": "Africa"
+    },
+    {
+        "id": "8b0c9e80-655e-4dea-8033-4759f8da80f7",
+        "name": "Elephant",
+        "continent": "Africa, Asia"
+    },
+    {
+        "id": "8765a979-2155-4765-9e92-5bb05cfb5e64",
+        "name": "rhinoceros",
+        "continent": "Africa"
+    }
+
+]

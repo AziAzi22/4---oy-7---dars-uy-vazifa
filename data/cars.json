@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "id": "ded5fb2b-a303-4ac2-ac20-27d05513747b",
+        "name": "Rimac Nevera",
+        "continent": "Croatia"
+    },
+    {
+        "id": "e1c2bc23-2897-4806-8778-47fdf1fe92a8",
+        "name": "Tatra 603",
+        "continent": "Czech Republic"
+    },
+    {
+        "id": "40184277-725a-4fe3-bbb6-699ba56bf244",
+        "name": "Morgan 3-Wheeler",
+        "continent": "United Kingdom"
+    },
+    {
+        "id": "9ce0cc2a-d469-4d6a-b9a6-bde109ee00a6",
+        "name": "Kombucha",
+        "continent": "Fermented tea drink"
+    }
+]

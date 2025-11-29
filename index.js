@@ -22,6 +22,16 @@ app.get("/get_all_animals", (req, res) => {
   }
 });
 
+/// books
+
+app.get("/get_all_books", (req, res) => {
+  try {
+    const data = read_file("books.json");
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 /// cars
 
 app.get("/get_all_cars", (req, res) => {
@@ -55,7 +65,7 @@ app.get("/get_all_fruits", (req, res) => {
   }
 });
 
-//// PUT
+//// ADD
 
 // animal
 
@@ -63,6 +73,9 @@ app.post("/add_animal", (req, res) => {
   try {
     const { name, continent } = req.body;
     const dataFile = read_file("animals.json");
+    if (dataFile.find((item) => item.name === name)) {
+      return res.status(400).json({ message: "animal already exists" });
+    }
     dataFile.push({
       id: v4(),
       name,
@@ -75,12 +88,37 @@ app.post("/add_animal", (req, res) => {
   }
 });
 
+//// books
+
+app.post("/add_book", (req, res) => {
+  try {
+    const { name, autor } = req.body;
+    const dataFile = read_file("books.json");
+    if (dataFile.find((item) => item.name === name)) {
+      return res.status(400).json({ message: "book already exists" });
+    }
+    dataFile.push({
+      id: v4(),
+      name,
+      autor,
+    });
+    write_file("books.json", dataFile);
+    res.status(201).json({
+      message: "added new book",
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 /// car
 
 app.post("/add_car", (req, res) => {
   try {
     const { name, continent } = req.body;
     const dataFile = read_file("cars.json");
+    if (dataFile.find((item) => item.name === name)) {
+      return res.status(400).json({ message: "car already exists" });
+    }
     dataFile.push({
       id: v4(),
       name,
@@ -99,6 +137,9 @@ app.post("/add_drink", (req, res) => {
   try {
     const { name, type } = req.body;
     const dataFile = read_file("drinks.json");
+    if (dataFile.find((item) => item.name === name)) {
+      return res.status(400).json({ message: "drink already exists" });
+    }
     dataFile.push({
       id: v4(),
       name,
@@ -117,6 +158,9 @@ app.post("/add_fruit", (req, res) => {
   try {
     const { name, continent } = req.body;
     const dataFile = read_file("fruits.json");
+    if (dataFile.find((item) => item.name === name)) {
+      return res.status(400).json({ message: "fruit already exists" });
+    }
     dataFile.push({
       id: v4(),
       name,
@@ -145,6 +189,18 @@ app.get("/get_one_animal/:id", (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+});
+
+/// book
+
+app.get("/get_one_book/:id", (req, res) => {
+  const { id } = req.params;
+  const data = read_file("books.json");
+  const foundedData = data.find((book) => book.id === id);
+  if (!foundedData) {
+    return res.status(404).json({ message: "Data not found" });
+  }
+  res.status(200).json(foundedData);
 });
 
 // car
@@ -215,6 +271,32 @@ app.put("/update_animal/:id", (req, res) => {
         item.continent = continent ? continent : item.continent;
       }
       write_file("animals.json", data);
+      res.status(200).json({ message: "updated" });
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+/// books
+
+app.put("/update_book/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, author } = req.body;
+    const data = read_file("books.json");
+    const foundedData = data.find((book) => book.id === id);
+
+    if (!foundedData) {
+      return res.status(404).json({ message: "Data not found" });
+    }
+
+    data.forEach((book) => {
+      if (book.id === id) {
+        book.name = name ? name : book.name;
+        book.author = author ? author : book.author;
+      }
+      write_file("books.json", data);
       res.status(200).json({ message: "updated" });
     });
   } catch (error) {
@@ -315,6 +397,28 @@ app.delete("/delete_animal/:id", (req, res) => {
       }
     });
     write_file("animals.json", data);
+    res.status(200).json({ message: "deleted" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+/// book
+
+app.delete("/delete_book/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = read_file("animals.json");
+    const foundedData = data.find((item) => item.id === id);
+    if (!foundedData) {
+      return res.status(404).json({ message: "Data not found" });
+    }
+    data.forEach((item, index) => {
+      if (item.id === id) {
+        data.splice(index, 1);
+      }
+    });
+    write_file("books.json", data);
     res.status(200).json({ message: "deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });

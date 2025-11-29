@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "id": "eab57df9-d0d3-42ed-86cc-f289a5db8fad",
+        "name": "Rambutan",
+        "continent": "Indonesia, Malaysia"
+    },
+    {
+        "id": "cf80efc1-8c5c-47ff-b52a-933d56f133ef",
+        "name": "Durian",
+        "continent": "Thailand, Malaysia, Indonesia"
+    },
+    {
+        "id": "9ec11efe-a5ae-4826-9aa4-9e80512c1a7e",
+        "name": "Dragon Fruit",
+        "continent": "Mexico, Central America"
+    }
+    
+]

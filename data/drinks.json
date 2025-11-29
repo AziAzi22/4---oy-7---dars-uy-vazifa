@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "id": "a4219c1f-eae2-461b-9e0b-e9fb2b23d5a5",
+        "name": "Kombucha",
+        "type": "Fermented tea drink"
+    },
+    {
+        "id": "0072808a-c596-4bc4-8a00-75c066e4f071",
+        "name": "Matcha Latte",
+        "type": "Green tea–based milk beverage"
+    },
+    {
+        "id": "166863d9-500c-434e-86c2-181169daa760",
+        "name": "Mango Lassi",
+        "type": "Yogurt-based fruity drink"
+    }
+]
